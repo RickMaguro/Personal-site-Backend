@@ -7,6 +7,11 @@ require('dotenv').config(); // Load environment variables
 const app = express();
 const port = process.env.PORT || 3000;
 
+const corsOptions = {
+    origin: ['http://localhost:4200', 'https://rick-chang-backend-server.onrender.com'],
+    optionsSuccessStatus: 200
+};
+
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
@@ -40,6 +45,6 @@ app.post('/send-email', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
